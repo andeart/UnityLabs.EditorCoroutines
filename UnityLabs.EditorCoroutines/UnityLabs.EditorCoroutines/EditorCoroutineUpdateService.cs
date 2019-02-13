@@ -99,7 +99,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
 
         #region UPDATE
 
-        public void OnUpdate ()
+        private void OnUpdate ()
         {
             double deltaTime = EditorApplication.timeSinceStartup - _previousTimeSinceStartup;
             _previousTimeSinceStartup = EditorApplication.timeSinceStartup;
