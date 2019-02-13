@@ -6,9 +6,9 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle ("UnityLabs.EditorCoroutines")]
-[assembly: AssemblyDescription ("")]
+[assembly: AssemblyDescription("EditorCoroutines allows you to start and stop Unity coroutines in Editor scripts.")]
 [assembly: AssemblyConfiguration ("")]
-[assembly: AssemblyCompany ("")]
+[assembly: AssemblyCompany("Andeart")]
 [assembly: AssemblyProduct ("UnityLabs.EditorCoroutines")]
 [assembly: AssemblyCopyright ("Copyright © ANURAG DEVANAPALLY 2019")]
 [assembly: AssemblyTrademark ("")]
@@ -32,5 +32,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion ("0.0.13.0")]
-[assembly: AssemblyFileVersion ("0.0.13.0")]
+[assembly: AssemblyVersion ("1.0.1.0")]
+[assembly: AssemblyFileVersion ("1.0.1.0")]
