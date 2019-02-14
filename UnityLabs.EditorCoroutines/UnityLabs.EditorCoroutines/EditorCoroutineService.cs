@@ -120,7 +120,13 @@ namespace Andeart.UnityLabs.EditorCoroutines
             StopCoroutine (null, routine);
         }
 
-        // TODO: StopCoroutine with an EditorCoroutine instance.
+        /// <summary>
+        /// Stops an EditorCoroutine instance specified by <param name="coroutine" />
+        /// </summary>
+        public static void StopCoroutine (EditorCoroutine coroutine)
+        {
+            EditorCoroutineUpdateService.Instance.StopCoroutine (coroutine);
+        }
 
         /// <summary>
         /// Stops all running EditorCoroutine instances that were returned by

@@ -65,6 +65,11 @@ namespace Andeart.UnityLabs.EditorCoroutines
             _coroutinesToEvaluate.Remove (coroutineId);
         }
 
+        public void StopCoroutine (EditorCoroutine coroutine)
+        {
+            _coroutinesToEvaluate.Remove (coroutine.Id);
+        }
+
         public void StopAllCoroutines (int ownerHash)
         {
             _stoppedIds.Clear ();
