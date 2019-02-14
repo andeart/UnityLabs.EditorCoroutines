@@ -101,6 +101,11 @@
             .
             </summary>
         </member>
+        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(Andeart.UnityLabs.EditorCoroutines.EditorCoroutine)">
+            <summary>
+            Stops an EditorCoroutine instance specified by <param name="coroutine" />
+            </summary>
+        </member>
         <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(UnityEditor.EditorWindow,System.Collections.IEnumerator)">
             <summary>
             Stops all running EditorCoroutine instances that were returned by

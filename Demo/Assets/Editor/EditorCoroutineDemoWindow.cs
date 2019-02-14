@@ -9,6 +9,8 @@ namespace Andeart.UnityLabs.EditorCoroutines.Demos
 
     public class EditorCoroutineDemoWindow : EditorWindow
     {
+        private EditorCoroutine _loopEveryTwoSecondsHandle;
+
         [MenuItem ("Window/EditorCoroutine Demos")]
         public static void ShowWindow ()
         {
@@ -19,7 +21,7 @@ namespace Andeart.UnityLabs.EditorCoroutines.Demos
         {
             if (GUILayout.Button ("Wait for two seconds"))
             {
-                EditorCoroutineService.StartCoroutine (WaitForTwoSeconds ());
+                _loopEveryTwoSecondsHandle = EditorCoroutineService.StartCoroutine (WaitForTwoSeconds ());
             }
 
             if (GUILayout.Button ("Wait for 20 frames"))
@@ -39,7 +41,10 @@ namespace Andeart.UnityLabs.EditorCoroutines.Demos
 
             if (GUILayout.Button ("Stop 'Wait for two seconds' coroutine"))
             {
-                EditorCoroutineService.StopCoroutine (WaitForTwoSeconds ());
+                if (_loopEveryTwoSecondsHandle != null)
+                {
+                    EditorCoroutineService.StopCoroutine (_loopEveryTwoSecondsHandle);
+                }
             }
 
             if (GUILayout.Button ("Stop all"))
