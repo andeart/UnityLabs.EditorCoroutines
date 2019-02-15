@@ -93,8 +93,8 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// </summary>
         public static EditorCoroutine StartCoroutine (this EditorWindow owner, IEnumerator routine)
         {
-            EditorCoroutine coroutine = EditorCoroutineFactory.Create (owner, routine);
-            return EditorCoroutineUpdateService.Instance.StartCoroutine (coroutine);
+            EditorCoroutine coroutine = CoroutineFactory.Create (owner, routine);
+            return CoroutineUpdateService.Instance.StartCoroutine (coroutine);
         }
 
         /// <summary>
@@ -106,8 +106,8 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// </summary>
         public static void StopCoroutine (this EditorWindow owner, string methodName)
         {
-            string coroutineId = EditorCoroutineFactory.GetId (owner, methodName);
-            EditorCoroutineUpdateService.Instance.StopCoroutine (coroutineId);
+            string coroutineId = CoroutineFactory.GetId (owner, methodName);
+            CoroutineUpdateService.Instance.StopCoroutine (coroutineId);
         }
 
         /// <summary>
@@ -121,11 +121,12 @@ namespace Andeart.UnityLabs.EditorCoroutines
         }
 
         /// <summary>
-        /// Stops an EditorCoroutine instance specified by <param name="coroutine" />
+        /// Stops an EditorCoroutine instance specified by
+        /// <param name="coroutine" />
         /// </summary>
         public static void StopCoroutine (EditorCoroutine coroutine)
         {
-            EditorCoroutineUpdateService.Instance.StopCoroutine (coroutine);
+            CoroutineUpdateService.Instance.StopCoroutine (coroutine);
         }
 
         /// <summary>
@@ -137,8 +138,8 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// </summary>
         public static void StopCoroutine (this EditorWindow owner, IEnumerator routine)
         {
-            string coroutineId = EditorCoroutineFactory.GetId (owner, routine);
-            EditorCoroutineUpdateService.Instance.StopCoroutine (coroutineId);
+            string coroutineId = CoroutineFactory.GetId (owner, routine);
+            CoroutineUpdateService.Instance.StopCoroutine (coroutineId);
         }
 
         /// <summary>
@@ -148,8 +149,8 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// </summary>
         public static void StopAllCoroutines (this EditorWindow owner)
         {
-            int ownerHash = EditorCoroutineFactory.GetOwnerHash (owner);
-            EditorCoroutineUpdateService.Instance.StopAllCoroutines (ownerHash);
+            int ownerHash = CoroutineFactory.GetOwnerHash (owner);
+            CoroutineUpdateService.Instance.StopAllCoroutines (ownerHash);
         }
 
         /// <summary>
@@ -157,7 +158,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// </summary>
         public static void StopAllCoroutines ()
         {
-            EditorCoroutineUpdateService.Instance.StopAllCoroutines ();
+            CoroutineUpdateService.Instance.StopAllCoroutines ();
         }
     }
 

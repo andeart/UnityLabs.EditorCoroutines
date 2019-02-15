@@ -5,7 +5,7 @@ using UnityEditor;
 namespace Andeart.UnityLabs.EditorCoroutines
 {
 
-    internal class EditorCoroutineUpdateService
+    internal class CoroutineUpdateService
     {
         // Map EditorCoroutine.Id to all running instances of that method.
         private readonly Dictionary<string, List<EditorCoroutine>> _coroutinesToEvaluate;
@@ -13,15 +13,15 @@ namespace Andeart.UnityLabs.EditorCoroutines
 
         private double _previousTimeSinceStartup;
 
-        public static EditorCoroutineUpdateService Instance { get; }
+        public static CoroutineUpdateService Instance { get; }
 
         // Begone, beforefieldinit.
-        static EditorCoroutineUpdateService ()
+        static CoroutineUpdateService ()
         {
-            Instance = new EditorCoroutineUpdateService ();
+            Instance = new CoroutineUpdateService ();
         }
 
-        private EditorCoroutineUpdateService ()
+        private CoroutineUpdateService ()
         {
             _coroutinesToEvaluate = new Dictionary<string, List<EditorCoroutine>> ();
             _stoppedIds = new List<string> ();

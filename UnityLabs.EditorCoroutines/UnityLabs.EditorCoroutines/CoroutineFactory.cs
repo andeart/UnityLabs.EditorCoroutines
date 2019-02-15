@@ -4,7 +4,7 @@
 namespace Andeart.UnityLabs.EditorCoroutines
 {
 
-    internal static class EditorCoroutineFactory
+    internal static class CoroutineFactory
     {
         public static EditorCoroutine Create (object owner, IEnumerator routine)
         {
