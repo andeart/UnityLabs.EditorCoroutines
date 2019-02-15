@@ -31,7 +31,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
 
             Routine = routine ?? throw new ArgumentNullException (nameof(routine), "Routine used to start an EditorCoroutine cannot be null.");
             OwnerHash = ownerHash;
-            Id = CoroutineFactory.GetId (OwnerHash, routine);
+            Id = CoroutineFactory.CreateId (OwnerHash, routine);
         }
 
         internal void Evaluate ()

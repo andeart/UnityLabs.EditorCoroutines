@@ -73,7 +73,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// </summary>
         public static void StopCoroutine (IEnumerator routine)
         {
-            string coroutineId = CoroutineFactory.GetId (null, routine);
+            string coroutineId = CoroutineFactory.CreateId (null, routine);
             CoroutineUpdateService.Instance.StopCoroutine (coroutineId);
         }
 
@@ -95,7 +95,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// </summary>
         public static void StopCoroutine (this EditorWindow owner, string methodName)
         {
-            string coroutineId = CoroutineFactory.GetId (owner, methodName);
+            string coroutineId = CoroutineFactory.CreateId (owner, methodName);
             CoroutineUpdateService.Instance.StopCoroutine (coroutineId);
         }
 
