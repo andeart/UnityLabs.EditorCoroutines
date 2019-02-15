@@ -13,30 +13,35 @@ namespace Andeart.UnityLabs.EditorCoroutines
     public static class EditorCoroutineService
     {
         /// <summary>
-        /// Starts a coroutine named
-        /// <param name="methodName" />
-        /// .
-        /// In most cases you want to use the <seealso cref="StartCoroutine(IEnumerator)" /> variation.
+        /// Starts an EditorCoroutine.
+        /// The execution of a coroutine can be paused at any point using the yield statement.
+        /// When a yield statement is used, the coroutine will pause execution and automatically resume at the next frame.
+        /// See the <see cref="UnityEngine.Coroutine" /> documentation for more details.
+        /// Coroutines are excellent when modeling behavior over several frames. Coroutines have virtually no performance overhead.
+        /// StartCoroutine function always returns immediately, however you can yield the result. Yielding waits until the
+        /// coroutine has finished execution.
+        /// There is no guarantee that coroutines end in the same order that they were started, even if they finish in the same
+        /// frame.
         /// You can <seealso cref="StopCoroutine(EditorWindow, string)" /> regardless of what approach/overload you used to start
         /// it.
         /// </summary>
-        /// <param name="owner">The EditorWindow to be set as the owner of this EditorCoroutine.</param>
-        public static EditorCoroutine StartCoroutine (this EditorWindow owner, string methodName)
+        public static EditorCoroutine StartCoroutine (IEnumerator routine)
         {
-            return StartCoroutine (owner, methodName, null);
+            EditorCoroutine coroutine = CoroutineFactory.Create (null, routine);
+            return CoroutineUpdateService.Instance.StartCoroutine (coroutine);
         }
 
         /// <summary>
         /// Starts a coroutine named
         /// <param name="methodName" />
-        /// .
+        /// on the owner object type.
         /// In most cases you want to use the <seealso cref="StartCoroutine(IEnumerator)" /> variation.
         /// You can <seealso cref="StopCoroutine(EditorWindow, string)" /> regardless of what approach/overload you used to start
         /// it.
         /// </summary>
         /// <param name="owner">The EditorWindow to be set as the owner of this EditorCoroutine.</param>
         /// <param name="methodArgs">The parameters to pass to the method being invoked.</param>
-        public static EditorCoroutine StartCoroutine (this EditorWindow owner, string methodName, params object[] methodArgs)
+        public static EditorCoroutine StartCoroutine (object owner, string methodName, object[] methodArgs = null)
         {
             if (owner == null)
             {
@@ -57,44 +62,28 @@ namespace Andeart.UnityLabs.EditorCoroutines
 
             object returned = methodInfo.Invoke (owner, methodArgs);
             IEnumerator routine = returned as IEnumerator;
-            return StartCoroutine (owner, routine);
-        }
-
-        /// <summary>
-        /// Starts an EditorCoroutine.
-        /// The execution of a coroutine can be paused at any point using the yield statement.
-        /// When a yield statement is used, the coroutine will pause execution and automatically resume at the next frame.
-        /// See the <see cref="UnityEngine.Coroutine" /> documentation for more details.
-        /// Coroutines are excellent when modeling behavior over several frames. Coroutines have virtually no performance overhead.
-        /// StartCoroutine function always returns immediately, however you can yield the result. Yielding waits until the
-        /// coroutine has finished execution.
-        /// There is no guarantee that coroutines end in the same order that they were started, even if they finish in the same
-        /// frame.
-        /// You can <seealso cref="StopCoroutine(EditorWindow, string)" /> regardless of what approach/overload you used to start
-        /// it.
-        /// </summary>
-        public static EditorCoroutine StartCoroutine (IEnumerator routine)
-        {
-            return StartCoroutine (null, routine);
-        }
-
-        /// <summary>
-        /// Starts an EditorCoroutine.
-        /// The execution of a coroutine can be paused at any point using the yield statement.
-        /// When a yield statement is used, the coroutine will pause execution and automatically resume at the next frame.
-        /// See the <see cref="UnityEngine.Coroutine" /> documentation for more details.
-        /// Coroutines are excellent when modeling behavior over several frames. Coroutines have virtually no performance overhead.
-        /// StartCoroutine function always returns immediately, however you can yield the result. Yielding waits until the
-        /// coroutine has finished execution.
-        /// There is no guarantee that coroutines end in the same order that they were started, even if they finish in the same
-        /// frame.
-        /// You can <seealso cref="StopCoroutine(EditorWindow, string)" /> regardless of what approach/overload you used to start
-        /// it.
-        /// </summary>
-        public static EditorCoroutine StartCoroutine (this EditorWindow owner, IEnumerator routine)
-        {
             EditorCoroutine coroutine = CoroutineFactory.Create (owner, routine);
             return CoroutineUpdateService.Instance.StartCoroutine (coroutine);
+        }
+
+        /// <summary>
+        /// Stops all running EditorCoroutine instances that were returned by
+        /// <param name="routine" />
+        /// .
+        /// </summary>
+        public static void StopCoroutine (IEnumerator routine)
+        {
+            string coroutineId = CoroutineFactory.GetId (null, routine);
+            CoroutineUpdateService.Instance.StopCoroutine (coroutineId);
+        }
+
+        /// <summary>
+        /// Stops an EditorCoroutine instance specified by
+        /// <param name="coroutine" />
+        /// </summary>
+        public static void StopCoroutine (EditorCoroutine coroutine)
+        {
+            CoroutineUpdateService.Instance.StopCoroutine (coroutine);
         }
 
         /// <summary>
@@ -111,35 +100,11 @@ namespace Andeart.UnityLabs.EditorCoroutines
         }
 
         /// <summary>
-        /// Stops all running EditorCoroutine instances that were returned by
-        /// <param name="routine" />
-        /// .
+        /// Stops all running EditorCoroutine instances. This is a Global "kill-all" mechanism.
         /// </summary>
-        public static void StopCoroutine (IEnumerator routine)
+        public static void StopAllCoroutines ()
         {
-            StopCoroutine (null, routine);
-        }
-
-        /// <summary>
-        /// Stops an EditorCoroutine instance specified by
-        /// <param name="coroutine" />
-        /// </summary>
-        public static void StopCoroutine (EditorCoroutine coroutine)
-        {
-            CoroutineUpdateService.Instance.StopCoroutine (coroutine);
-        }
-
-        /// <summary>
-        /// Stops all running EditorCoroutine instances that were returned by
-        /// <param name="routine" />
-        /// and belonging to the type of
-        /// <param name="owner" />
-        /// .
-        /// </summary>
-        public static void StopCoroutine (this EditorWindow owner, IEnumerator routine)
-        {
-            string coroutineId = CoroutineFactory.GetId (owner, routine);
-            CoroutineUpdateService.Instance.StopCoroutine (coroutineId);
+            CoroutineUpdateService.Instance.StopAllCoroutines ();
         }
 
         /// <summary>
@@ -147,18 +112,10 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// <param name="owner" />
         /// .
         /// </summary>
-        public static void StopAllCoroutines (this EditorWindow owner)
+        public static void StopAllCoroutines (object owner)
         {
             int ownerHash = CoroutineFactory.GetOwnerHash (owner);
             CoroutineUpdateService.Instance.StopAllCoroutines (ownerHash);
-        }
-
-        /// <summary>
-        /// Stops all running EditorCoroutine instances. This is a Global "kill-all" mechanism.
-        /// </summary>
-        public static void StopAllCoroutines ()
-        {
-            CoroutineUpdateService.Instance.StopAllCoroutines ();
         }
     }
 

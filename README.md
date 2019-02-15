@@ -32,25 +32,19 @@ results in this...
  
  `EditorCoroutines` currently supports starting and stopping coroutines via the following methods:
  ```csharp
- EditorCoroutine StartCoroutine (IEnumerator routine);
+EditorCoroutine StartCoroutine (IEnumerator routine);
 
-EditorCoroutine StartCoroutine (this EditorWindow owner, string methodName);
-
-EditorCoroutine StartCoroutine (this EditorWindow owner, string methodName, params object[] methodArgs);
-
-EditorCoroutine StartCoroutine (this EditorWindow owner, IEnumerator routine);
+EditorCoroutine StartCoroutine (object owner, string methodName, object[] methodArgs = null);
 
 void StopCoroutine (IEnumerator routine);
 
 void StopCoroutine (EditorCoroutine routine);
 
-void StopCoroutine (this EditorWindow owner, string methodName);
-
-void StopCoroutine (this EditorWindow owner, IEnumerator routine);
-
-void StopAllCoroutines (this EditorWindow owner);
+void StopCoroutine (object owner, string methodName);
 
 void StopAllCoroutines ();
+
+void StopAllCoroutines (object owner);
  ```
  
  #### Supported YieldInstruction types
