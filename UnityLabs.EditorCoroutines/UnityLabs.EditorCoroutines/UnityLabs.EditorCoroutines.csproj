@@ -50,13 +50,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EditorCoroutine.cs" />
-    <Compile Include="EditorCoroutineFactory.cs" />
+    <Compile Include="CoroutineFactory.cs" />
     <Compile Include="EditorCoroutineService.cs" />
-    <Compile Include="EditorCoroutineUpdateService.cs" />
+    <Compile Include="CoroutineUpdateService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Compile Include="EditorCoroutine.Yields.cs" />
+    <Compile Include="Yield.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
