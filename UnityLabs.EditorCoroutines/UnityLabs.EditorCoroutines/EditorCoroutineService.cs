@@ -93,7 +93,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// <param name="owner" />
         /// .
         /// </summary>
-        public static void StopCoroutine (this EditorWindow owner, string methodName)
+        public static void StopCoroutine (object owner, string methodName)
         {
             string coroutineId = CoroutineFactory.CreateId (owner, methodName);
             CoroutineUpdateService.Instance.StopCoroutine (coroutineId);
