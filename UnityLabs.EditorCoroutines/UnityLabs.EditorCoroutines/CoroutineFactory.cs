@@ -4,29 +4,29 @@
 namespace Andeart.UnityLabs.EditorCoroutines
 {
 
-    internal static class EditorCoroutineFactory
+    internal static class CoroutineFactory
     {
         public static EditorCoroutine Create (object owner, IEnumerator routine)
         {
             return new EditorCoroutine (GetOwnerHash (owner), routine);
         }
 
-        public static string GetId (object owner, IEnumerator routine)
+        public static string CreateId (object owner, IEnumerator routine)
         {
-            return GetId (GetOwnerHash (owner), GetCoreMethodName (routine));
+            return CreateId (GetOwnerHash (owner), GetCoreMethodName (routine));
         }
 
-        public static string GetId (object owner, string methodName)
+        public static string CreateId (object owner, string methodName)
         {
-            return GetId (GetOwnerHash (owner), methodName);
+            return CreateId (GetOwnerHash (owner), methodName);
         }
 
-        public static string GetId (int ownerHash, IEnumerator routine)
+        public static string CreateId (int ownerHash, IEnumerator routine)
         {
-            return GetId (ownerHash, GetCoreMethodName (routine));
+            return CreateId (ownerHash, GetCoreMethodName (routine));
         }
 
-        public static string GetId (int ownerHash, string methodName)
+        public static string CreateId (int ownerHash, string methodName)
         {
             return ownerHash + "_" + methodName;
         }

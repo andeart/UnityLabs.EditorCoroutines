@@ -32,25 +32,19 @@ results in this...
  
  `EditorCoroutines` currently supports starting and stopping coroutines via the following methods:
  ```csharp
- EditorCoroutine StartCoroutine (IEnumerator routine);
+EditorCoroutine StartCoroutine (IEnumerator routine);
 
-EditorCoroutine StartCoroutine (this EditorWindow owner, string methodName);
-
-EditorCoroutine StartCoroutine (this EditorWindow owner, string methodName, params object[] methodArgs);
-
-EditorCoroutine StartCoroutine (this EditorWindow owner, IEnumerator routine);
+EditorCoroutine StartCoroutine (object owner, string methodName, object[] methodArgs = null);
 
 void StopCoroutine (IEnumerator routine);
 
 void StopCoroutine (EditorCoroutine routine);
 
-void StopCoroutine (this EditorWindow owner, string methodName);
-
-void StopCoroutine (this EditorWindow owner, IEnumerator routine);
-
-void StopAllCoroutines (this EditorWindow owner);
+void StopCoroutine (object owner, string methodName);
 
 void StopAllCoroutines ();
+
+void StopAllCoroutines (object owner);
  ```
  
  #### Supported YieldInstruction types
@@ -62,11 +56,17 @@ void StopAllCoroutines ();
  - ~~`WWW`~~: `WWW` is now obsolete from Unity. Use `UnityWebRequest` instead, which is supported as an `AsyncOperation`.
  - `CustomYieldInstruction`
  - Nested `EditorCoroutines`
+
+ ## Tests
+
+ Because `EditorCoroutines` is purely a Unity concept (and implementation), the tests for this project are written in Unity's TestRunner.
+ You can find the currently implemented tests in the [Tests.cs](https://github.com/andeart/UnityLabs.EditorCoroutines/tree/master/Demo/Assets/Editor/Tests) file.
  
 ## Installation and Usage
-* Drop the `UnityLabs.EditorCoroutines.dll` file (from the [Releases tab](https://github.com/andeart/UnityLabs.EditorCoroutines/releases)) in your Unity project. Any sub-directory under `Assets` will work- it does not need to be under an `Editor` folder.
-* Optional: Also drop the `UnityLabs.EditorCoroutines.pdb` and ``UnityLabs.EditorCoroutines.xml` files in the same location if you're interested in debugging.
+* Drop the `UnityLabs.EditorCoroutines.dll` file (from the [Releases tab](https://github.com/andeart/UnityLabs.EditorCoroutines/releases)) anywhere in your Unity project. Any sub-directory under `Assets` will work- **it does not need to be under an `Editor` folder**.
+* Optional: Also drop the `UnityLabs.EditorCoroutines.pdb` and `UnityLabs.EditorCoroutines.xml` files in the same location if you're interested in debugging.
 * You can now use `EditorCoroutines` in your Editor scripts.
+* Refer to the [Demo C#](https://github.com/andeart/UnityLabs.EditorCoroutines/blob/master/Demo/Assets/Editor/Demos/EditorCoroutineDemoWindow.cs) file for more examples
 
 ## Feedback
 Please feel free to send in a Pull Request, or drop me an email. Cheers!

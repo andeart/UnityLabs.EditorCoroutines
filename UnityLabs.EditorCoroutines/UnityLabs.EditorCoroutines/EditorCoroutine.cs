@@ -13,7 +13,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
     /// 
     /// An EditorCoroutine is a function that can suspend its execution (yield) until the given <see cref="YieldInstruction"/> finishes.
     /// </summary>
-    public partial class EditorCoroutine
+    public class EditorCoroutine
     {
         internal IYield CurrentYield { get; set; }
         internal bool Finished { get; set; }
@@ -31,7 +31,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
 
             Routine = routine ?? throw new ArgumentNullException (nameof(routine), "Routine used to start an EditorCoroutine cannot be null.");
             OwnerHash = ownerHash;
-            Id = EditorCoroutineFactory.GetId (OwnerHash, routine);
+            Id = CoroutineFactory.CreateId (OwnerHash, routine);
         }
 
         internal void Evaluate ()
