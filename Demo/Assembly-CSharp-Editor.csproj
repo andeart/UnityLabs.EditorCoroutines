@@ -8,7 +8,7 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace></RootNamespace>
+    <RootNamespace>Andeart.UnityLabs.EditorCoroutines.Unity</RootNamespace>
     <ProjectGuid>{DB0005D0-E46F-236E-2F57-76542FED5F47}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
@@ -60,7 +60,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\EditorCoroutineDemoWindow.cs" />
+    <Compile Include="Assets\Editor\Demos\EditorCoroutineDemoWindow.cs" />
+    <Compile Include="Assets\Editor\Tests\EditorCoroutineTestRunner.cs" />
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>D:/Users/anurag/Documents/Projects/UnityLabs.EditorCoroutines/Demo/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
