@@ -32,29 +32,6 @@
             Static service to help start EditorCoroutines.
             </summary>
         </member>
-        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StartCoroutine(UnityEditor.EditorWindow,System.String)">
-            <summary>
-            Starts a coroutine named
-            <param name="methodName" />
-            .
-            In most cases you want to use the <seealso cref="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StartCoroutine(System.Collections.IEnumerator)" /> variation.
-            You can <seealso cref="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(UnityEditor.EditorWindow,System.String)" /> regardless of what approach/overload you used to start
-            it.
-            </summary>
-            <param name="owner">The EditorWindow to be set as the owner of this EditorCoroutine.</param>
-        </member>
-        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StartCoroutine(UnityEditor.EditorWindow,System.String,System.Object[])">
-            <summary>
-            Starts a coroutine named
-            <param name="methodName" />
-            .
-            In most cases you want to use the <seealso cref="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StartCoroutine(System.Collections.IEnumerator)" /> variation.
-            You can <seealso cref="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(UnityEditor.EditorWindow,System.String)" /> regardless of what approach/overload you used to start
-            it.
-            </summary>
-            <param name="owner">The EditorWindow to be set as the owner of this EditorCoroutine.</param>
-            <param name="methodArgs">The parameters to pass to the method being invoked.</param>
-        </member>
         <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StartCoroutine(System.Collections.IEnumerator)">
             <summary>
             Starts an EditorCoroutine.
@@ -66,33 +43,20 @@
             coroutine has finished execution.
             There is no guarantee that coroutines end in the same order that they were started, even if they finish in the same
             frame.
-            You can <seealso cref="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(UnityEditor.EditorWindow,System.String)" /> regardless of what approach/overload you used to start
+            You can <seealso cref="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(System.Object,System.String)" /> regardless of what approach/overload you used to start
             it.
             </summary>
         </member>
-        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StartCoroutine(UnityEditor.EditorWindow,System.Collections.IEnumerator)">
+        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StartCoroutine(System.Object,System.String,System.Object[])">
             <summary>
-            Starts an EditorCoroutine.
-            The execution of a coroutine can be paused at any point using the yield statement.
-            When a yield statement is used, the coroutine will pause execution and automatically resume at the next frame.
-            See the <see cref="T:UnityEngine.Coroutine" /> documentation for more details.
-            Coroutines are excellent when modeling behavior over several frames. Coroutines have virtually no performance overhead.
-            StartCoroutine function always returns immediately, however you can yield the result. Yielding waits until the
-            coroutine has finished execution.
-            There is no guarantee that coroutines end in the same order that they were started, even if they finish in the same
-            frame.
-            You can <seealso cref="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(UnityEditor.EditorWindow,System.String)" /> regardless of what approach/overload you used to start
+            Starts a coroutine with the methodName on the owner object type.
+            In most cases you want to use the <seealso cref="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StartCoroutine(System.Collections.IEnumerator)" /> variation.
+            You can <seealso cref="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(System.Object,System.String)" /> regardless of what approach/overload you used to start
             it.
             </summary>
-        </member>
-        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(UnityEditor.EditorWindow,System.String)">
-            <summary>
-            Stops all running EditorCoroutine instances named
-            <param name="methodName" />
-            and belonging to the type of
-            <param name="owner" />
-            .
-            </summary>
+            <param name="owner">The EditorWindow to be set as the owner of this EditorCoroutine.</param>
+            <param name="methodName">The name of the method on the owner object type.</param>
+            <param name="methodArgs">The parameters to pass to the method being invoked.</param>
         </member>
         <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(System.Collections.IEnumerator)">
             <summary>
@@ -103,21 +67,15 @@
         </member>
         <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(Andeart.UnityLabs.EditorCoroutines.EditorCoroutine)">
             <summary>
-            Stops an EditorCoroutine instance specified by <param name="coroutine" />
+            Stops an EditorCoroutine instance specified by
+            <param name="coroutine" />
             </summary>
         </member>
-        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(UnityEditor.EditorWindow,System.Collections.IEnumerator)">
+        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopCoroutine(System.Object,System.String)">
             <summary>
-            Stops all running EditorCoroutine instances that were returned by
-            <param name="routine" />
+            Stops all running EditorCoroutine instances named
+            <param name="methodName" />
             and belonging to the type of
-            <param name="owner" />
-            .
-            </summary>
-        </member>
-        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopAllCoroutines(UnityEditor.EditorWindow)">
-            <summary>
-            Stops all running EditorCoroutine instances that belong to the type of
             <param name="owner" />
             .
             </summary>
@@ -125,6 +83,13 @@
         <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopAllCoroutines">
             <summary>
             Stops all running EditorCoroutine instances. This is a Global "kill-all" mechanism.
+            </summary>
+        </member>
+        <member name="M:Andeart.UnityLabs.EditorCoroutines.EditorCoroutineService.StopAllCoroutines(System.Object)">
+            <summary>
+            Stops all running EditorCoroutine instances that belong to the type of
+            <param name="owner" />
+            .
             </summary>
         </member>
     </members>
