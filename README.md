@@ -63,8 +63,8 @@ void StopAllCoroutines (object owner);
  You can find the currently implemented tests in the [Tests.cs](https://github.com/andeart/UnityLabs.EditorCoroutines/tree/master/Demo/Assets/Editor/Tests) file.
  
 ## Installation and Usage
-* Drop the `UnityLabs.EditorCoroutines.dll` file (from the [Releases tab](https://github.com/andeart/UnityLabs.EditorCoroutines/releases)) in your Unity project. Any sub-directory under `Assets` will work- it does not need to be under an `Editor` folder.
-* Optional: Also drop the `UnityLabs.EditorCoroutines.pdb` and ``UnityLabs.EditorCoroutines.xml` files in the same location if you're interested in debugging.
+* Drop the `UnityLabs.EditorCoroutines.dll` file (from the [Releases tab](https://github.com/andeart/UnityLabs.EditorCoroutines/releases)) anywhere in your Unity project. Any sub-directory under `Assets` will work- **it does not need to be under an `Editor` folder**.
+* Optional: Also drop the `UnityLabs.EditorCoroutines.pdb` and `UnityLabs.EditorCoroutines.xml` files in the same location if you're interested in debugging.
 * You can now use `EditorCoroutines` in your Editor scripts.
 * Refer to the [Demo C#](https://github.com/andeart/UnityLabs.EditorCoroutines/blob/master/Demo/Assets/Editor/Demos/EditorCoroutineDemoWindow.cs) file for more examples
 
