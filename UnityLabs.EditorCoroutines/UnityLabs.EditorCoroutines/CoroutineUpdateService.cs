@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using UnityEditor;
 
 
@@ -114,12 +115,14 @@ namespace Andeart.UnityLabs.EditorCoroutines
             }
 
             _stoppedIds.Clear ();
-            foreach (var coroutineListInfo in _coroutinesToEvaluate)
+            // The following uses _coroutinesToEvaluate.ToList () and not simply _coroutinesToEvaluate.
+            // This is to cache current list of _coroutinesToEvaluate and evaluate only those, in case another EditorCoroutine is started while evaluating the current collection.
+            foreach (var coroutineListInfo in _coroutinesToEvaluate.ToList ())
             {
                 var coroutineList = coroutineListInfo.Value;
-                for (int i = coroutineList.Count - 1; i >= 0; i--) // Go backwards, to allow element removal during iteration.
+                for (int j = coroutineList.Count - 1; j >= 0; j--) // Go backwards, to allow element removal during iteration.
                 {
-                    EditorCoroutine coroutine = coroutineList[i];
+                    EditorCoroutine coroutine = coroutineList[j];
 
                     if (!coroutine.CurrentYield.IsReadyToEvaluate (deltaTime, 1))
                     {
@@ -132,7 +135,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
                         continue;
                     }
 
-                    coroutineList.RemoveAt (i);
+                    coroutineList.RemoveAt (j);
                     coroutine.CurrentYield = null;
                     coroutine.Finished = true;
                 }
