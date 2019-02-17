@@ -10,7 +10,6 @@ namespace Andeart.UnityLabs.EditorCoroutines
     {
         // Map EditorCoroutine.Id to all running instances of that method.
         private readonly Dictionary<string, List<EditorCoroutine>> _coroutinesToEvaluate;
-        private readonly List<string> _stoppedIds;
 
         private double _previousTimeSinceStartup;
 
@@ -25,7 +24,6 @@ namespace Andeart.UnityLabs.EditorCoroutines
         private CoroutineUpdateService ()
         {
             _coroutinesToEvaluate = new Dictionary<string, List<EditorCoroutine>> ();
-            _stoppedIds = new List<string> ();
         }
 
         private void Initialize ()
@@ -73,20 +71,14 @@ namespace Andeart.UnityLabs.EditorCoroutines
 
         public void StopAllCoroutines (int ownerHash)
         {
-            _stoppedIds.Clear ();
-            foreach (var coroutineInstanceListInfo in _coroutinesToEvaluate)
+            foreach (var coroutineInstanceListInfo in _coroutinesToEvaluate.ToList ())
             {
                 var coroutineInstanceList = coroutineInstanceListInfo.Value;
                 coroutineInstanceList.RemoveAll (DoesCoroutineOwnerHashMatch);
                 if (coroutineInstanceList.Count == 0)
                 {
-                    _stoppedIds.Add (coroutineInstanceListInfo.Key);
+                    _coroutinesToEvaluate.Remove (coroutineInstanceListInfo.Key);
                 }
-            }
-
-            for (int i = 0; i < _stoppedIds.Count; i++)
-            {
-                _coroutinesToEvaluate.Remove (_stoppedIds[i]);
             }
 
             bool DoesCoroutineOwnerHashMatch (EditorCoroutine coroutine)
@@ -114,7 +106,6 @@ namespace Andeart.UnityLabs.EditorCoroutines
                 return;
             }
 
-            _stoppedIds.Clear ();
             // The following uses _coroutinesToEvaluate.ToList () and not simply _coroutinesToEvaluate.
             // This is to cache current list of _coroutinesToEvaluate and evaluate only those, in case another EditorCoroutine is started while evaluating the current collection.
             foreach (var coroutineListInfo in _coroutinesToEvaluate.ToList ())
@@ -142,13 +133,8 @@ namespace Andeart.UnityLabs.EditorCoroutines
 
                 if (coroutineList.Count == 0)
                 {
-                    _stoppedIds.Add (coroutineListInfo.Key);
+                    _coroutinesToEvaluate.Remove (coroutineListInfo.Key);
                 }
-            }
-
-            for (int i = 0; i < _stoppedIds.Count; i++)
-            {
-                _coroutinesToEvaluate.Remove (_stoppedIds[i]);
             }
         }
 
