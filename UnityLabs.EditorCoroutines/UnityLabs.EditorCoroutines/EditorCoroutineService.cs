@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections;
 using System.Reflection;
-using UnityEditor;
 
 
 namespace Andeart.UnityLabs.EditorCoroutines
@@ -22,7 +21,7 @@ namespace Andeart.UnityLabs.EditorCoroutines
         /// coroutine has finished execution.
         /// There is no guarantee that coroutines end in the same order that they were started, even if they finish in the same
         /// frame.
-        /// You can <seealso cref="StopCoroutine(EditorWindow, string)" /> regardless of what approach/overload you used to start
+        /// You can <seealso cref="StopCoroutine(object, string)" /> regardless of what approach/overload you used to start
         /// it.
         /// </summary>
         public static EditorCoroutine StartCoroutine (IEnumerator routine)
@@ -32,14 +31,13 @@ namespace Andeart.UnityLabs.EditorCoroutines
         }
 
         /// <summary>
-        /// Starts a coroutine named
-        /// <param name="methodName" />
-        /// on the owner object type.
+        /// Starts a coroutine with the methodName on the owner object type.
         /// In most cases you want to use the <seealso cref="StartCoroutine(IEnumerator)" /> variation.
-        /// You can <seealso cref="StopCoroutine(EditorWindow, string)" /> regardless of what approach/overload you used to start
+        /// You can <seealso cref="StopCoroutine(object, string)" /> regardless of what approach/overload you used to start
         /// it.
         /// </summary>
         /// <param name="owner">The EditorWindow to be set as the owner of this EditorCoroutine.</param>
+        /// <param name="methodName">The name of the method on the owner object type.</param>
         /// <param name="methodArgs">The parameters to pass to the method being invoked.</param>
         public static EditorCoroutine StartCoroutine (object owner, string methodName, object[] methodArgs = null)
         {
