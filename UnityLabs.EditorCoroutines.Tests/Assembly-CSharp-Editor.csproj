@@ -60,7 +60,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\EditorCoroutineTestRunner.cs" />
+    <Compile Include="Assets\Editor\EditorCoroutineTests.cs" />
     <Reference Include="Unity.PackageManagerUI.Editor">
       <HintPath>D:/Users/anurag/Documents/Projects/UnityLabs.EditorCoroutines/UnityLabs.EditorCoroutines.Tests/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>

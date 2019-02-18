@@ -7,10 +7,10 @@ using UnityEngine.Networking;
 using UnityEngine.TestTools;
 
 
-namespace Andeart.UnityLabs.EditorCoroutines.Unity.Tests
+namespace Andeart.UnityLabs.EditorCoroutines.Tests
 {
 
-    public class EditorCoroutineTestRunner
+    public class EditorCoroutineTests
     {
         private bool _isTestCoroutineComplete;
 
