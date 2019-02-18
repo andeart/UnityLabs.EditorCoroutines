@@ -8,8 +8,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <RootNamespace>Andeart.UnityLabs.EditorCoroutines.Unity</RootNamespace>
-    <ProjectGuid>{DB0005D0-E46F-236E-2F57-76542FED5F47}</ProjectGuid>
+    <RootNamespace></RootNamespace>
+    <ProjectGuid>{17B65556-93C0-6325-2BEB-FC7F1C77886B}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -60,9 +60,9 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Assets\Editor\EditorCoroutineDemoWindow.cs" />
+    <Compile Include="Assets\Editor\EditorCoroutineTestRunner.cs" />
     <Reference Include="Unity.PackageManagerUI.Editor">
-      <HintPath>D:/Users/anurag/Documents/Projects/UnityLabs.EditorCoroutines/Demo/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
+      <HintPath>D:/Users/anurag/Documents/Projects/UnityLabs.EditorCoroutines/UnityLabs.EditorCoroutines.Tests/Library/ScriptAssemblies/Unity.PackageManagerUI.Editor.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>D:/Program Files/Unity Editors/2018.3.5f1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -299,7 +299,7 @@
       <HintPath>C:/Program Files (x86)/Microsoft Visual Studio Tools for Unity/15.0/Editor/SyntaxTree.VisualStudio.Unity.Bridge.dll</HintPath>
     </Reference>
     <Reference Include="UnityLabs.EditorCoroutines">
-      <HintPath>D:/Users/anurag/Documents/Projects/UnityLabs.EditorCoroutines/Demo/Assets/Libraries/UnityLabs.EditorCoroutines.dll</HintPath>
+      <HintPath>D:/Users/anurag/Documents/Projects/UnityLabs.EditorCoroutines/UnityLabs.EditorCoroutines.Tests/Assets/Libraries/UnityLabs.EditorCoroutines.dll</HintPath>
     </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Program Files/Unity Editors/2018.3.5f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
