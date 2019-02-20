@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.Networking;
 
 
-namespace Andeart.UnityLabs.EditorCoroutines.Unity.Demos
+namespace Andeart.UnityLabs.EditorCoroutines.Demo
 {
 
     public class EditorCoroutineDemoWindow : EditorWindow
