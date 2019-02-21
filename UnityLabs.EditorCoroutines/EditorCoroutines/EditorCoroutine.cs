@@ -4,7 +4,7 @@ using System.Reflection;
 using UnityEngine;
 
 
-namespace Andeart.UnityLabs.EditorCoroutines
+namespace Andeart.EditorCoroutines
 {
 
     /// <summary>

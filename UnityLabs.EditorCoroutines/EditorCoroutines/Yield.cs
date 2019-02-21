@@ -1,4 +1,4 @@
-﻿namespace Andeart.UnityLabs.EditorCoroutines
+﻿namespace Andeart.EditorCoroutines
 {
 
     internal interface IYield

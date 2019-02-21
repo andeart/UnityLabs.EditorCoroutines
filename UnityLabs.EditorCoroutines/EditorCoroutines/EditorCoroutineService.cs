@@ -3,7 +3,7 @@ using System.Collections;
 using System.Reflection;
 
 
-namespace Andeart.UnityLabs.EditorCoroutines
+namespace Andeart.EditorCoroutines
 {
 
     /// <summary>
