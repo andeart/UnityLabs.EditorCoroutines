@@ -7,8 +7,8 @@
     <ProjectGuid>{D9082F31-71D6-4453-B178-A80EE10958B1}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Andeart.UnityLabs.EditorCoroutines</RootNamespace>
-    <AssemblyName>UnityLabs.EditorCoroutines</AssemblyName>
+    <RootNamespace>Andeart.EditorCoroutines</RootNamespace>
+    <AssemblyName>Andeart.EditorCoroutines</AssemblyName>
     <TargetFrameworkVersion>v4.7.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\UnityLabs.EditorCoroutines.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\Andeart.EditorCoroutines.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\UnityLabs.EditorCoroutines.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\Andeart.EditorCoroutines.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />

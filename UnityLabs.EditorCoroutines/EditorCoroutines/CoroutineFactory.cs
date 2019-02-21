@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 
 
-namespace Andeart.UnityLabs.EditorCoroutines
+namespace Andeart.EditorCoroutines
 {
 
     internal static class CoroutineFactory

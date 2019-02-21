@@ -3,7 +3,7 @@ using System.Linq;
 using UnityEditor;
 
 
-namespace Andeart.UnityLabs.EditorCoroutines
+namespace Andeart.EditorCoroutines
 {
 
     internal class CoroutineUpdateService
