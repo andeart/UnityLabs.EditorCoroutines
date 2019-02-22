@@ -1,0 +1,2 @@
+EditorCoroutines.Demo\Assets\Libraries
+EditorCoroutines.Tests\Assets\Libraries
