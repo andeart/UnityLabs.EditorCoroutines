@@ -1,23 +1,12 @@
-﻿namespace Andeart.EditorCoroutines
+﻿using Andeart.EditorCoroutines.Coroutines;
+using Andeart.EditorCoroutines.Yields;
+
+
+namespace Andeart.EditorCoroutines.Unity.Yields
 {
-
-    internal interface IYield
-    {
-        bool IsReadyToEvaluate (double deltaTime, int frameCount);
-    }
-
 
     internal static class Yield
     {
-        public class Default : IYield
-        {
-            public bool IsReadyToEvaluate (double deltaTime, int frameCount)
-            {
-                return true;
-            }
-        }
-
-
         public class WaitForFrames : IYield
         {
             private int _framesLeft;
@@ -86,9 +75,9 @@
 
         public class NestedCoroutine : IYield
         {
-            private readonly EditorCoroutine _coroutine;
+            private readonly ICoroutine _coroutine;
 
-            public NestedCoroutine (EditorCoroutine coroutine)
+            public NestedCoroutine (ICoroutine coroutine)
             {
                 _coroutine = coroutine;
             }

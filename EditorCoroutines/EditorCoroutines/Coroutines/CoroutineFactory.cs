@@ -1,42 +1,44 @@
 ﻿using System.Collections;
 
 
-namespace Andeart.EditorCoroutines
+namespace Andeart.EditorCoroutines.Coroutines
 {
 
-    internal static class CoroutineFactory
+    internal class CoroutineFactory : ICoroutineFactory<Coroutine>
     {
-        public static EditorCoroutine Create (object owner, IEnumerator routine)
+        public Coroutine Create (object owner, IEnumerator routine)
         {
-            return new EditorCoroutine (GetOwnerHash (owner), routine);
+            int ownerHash = GetOwnerHash (owner);
+            string id = CreateId (ownerHash, routine);
+            return new Coroutine (ownerHash, routine, id);
         }
 
-        public static string CreateId (object owner, IEnumerator routine)
+        public string CreateId (object owner, IEnumerator routine)
         {
             return CreateId (GetOwnerHash (owner), GetCoreMethodName (routine));
         }
 
-        public static string CreateId (object owner, string methodName)
+        public string CreateId (object owner, string methodName)
         {
             return CreateId (GetOwnerHash (owner), methodName);
         }
 
-        public static string CreateId (int ownerHash, IEnumerator routine)
+        public string CreateId (int ownerHash, IEnumerator routine)
         {
             return CreateId (ownerHash, GetCoreMethodName (routine));
         }
 
-        public static string CreateId (int ownerHash, string methodName)
+        public string CreateId (int ownerHash, string methodName)
         {
             return ownerHash + "_" + methodName;
         }
 
-        public static int GetOwnerHash (object owner)
+        public int GetOwnerHash (object owner)
         {
             return owner?.GetHashCode () ?? -1;
         }
 
-        public static string GetCoreMethodName (IEnumerator routine)
+        public string GetCoreMethodName (IEnumerator routine)
         {
             string methodName = routine.ToString (); // Backup name, in case we're unable to parse the real method name.
             var split = routine.ToString ().Split ('<', '>');

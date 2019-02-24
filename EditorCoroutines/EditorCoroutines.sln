@@ -5,6 +5,8 @@ VisualStudioVersion = 15.0.28307.329
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditorCoroutines", "EditorCoroutines\EditorCoroutines.csproj", "{D9082F31-71D6-4453-B178-A80EE10958B1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EditorCoroutines.Unity", "EditorCoroutines.Unity\EditorCoroutines.Unity.csproj", "{64B1EB14-D0D2-44C5-9D9C-D62F2EC84407}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{D9082F31-71D6-4453-B178-A80EE10958B1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9082F31-71D6-4453-B178-A80EE10958B1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9082F31-71D6-4453-B178-A80EE10958B1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{64B1EB14-D0D2-44C5-9D9C-D62F2EC84407}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{64B1EB14-D0D2-44C5-9D9C-D62F2EC84407}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{64B1EB14-D0D2-44C5-9D9C-D62F2EC84407}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{64B1EB14-D0D2-44C5-9D9C-D62F2EC84407}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
