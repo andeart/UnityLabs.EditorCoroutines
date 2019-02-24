@@ -1,9 +1,13 @@
-﻿using System;
+﻿using Andeart.EditorCoroutines.Coroutines;
+using Andeart.EditorCoroutines.Unity.Coroutines;
+using Andeart.EditorCoroutines.Unity.Updates;
+using Andeart.EditorCoroutines.Updates;
+using System;
 using System.Collections;
 using System.Reflection;
 
 
-namespace Andeart.EditorCoroutines
+namespace Andeart.EditorCoroutines.Unity
 {
 
     /// <summary>
@@ -11,6 +15,15 @@ namespace Andeart.EditorCoroutines
     /// </summary>
     public static class EditorCoroutineService
     {
+        private static readonly IUpdateService<EditorCoroutine> _updateService;
+        private static readonly ICoroutineFactory<EditorCoroutine> _coroutineFactory;
+
+        static EditorCoroutineService ()
+        {
+            _updateService = new EditorUpdateService ();
+            _coroutineFactory = new EditorCoroutineFactory ();
+        }
+
         /// <summary>
         /// Starts an EditorCoroutine.
         /// The execution of a coroutine can be paused at any point using the yield statement.
@@ -26,8 +39,8 @@ namespace Andeart.EditorCoroutines
         /// </summary>
         public static EditorCoroutine StartCoroutine (IEnumerator routine)
         {
-            EditorCoroutine coroutine = CoroutineFactory.Create (null, routine);
-            return CoroutineUpdateService.Instance.StartCoroutine (coroutine);
+            EditorCoroutine coroutine = _coroutineFactory.Create (null, routine);
+            return _updateService.StartCoroutine (coroutine);
         }
 
         /// <summary>
@@ -60,8 +73,8 @@ namespace Andeart.EditorCoroutines
 
             object returned = methodInfo.Invoke (owner, methodArgs);
             IEnumerator routine = returned as IEnumerator;
-            EditorCoroutine coroutine = CoroutineFactory.Create (owner, routine);
-            return CoroutineUpdateService.Instance.StartCoroutine (coroutine);
+            EditorCoroutine coroutine = _coroutineFactory.Create (owner, routine);
+            return _updateService.StartCoroutine (coroutine);
         }
 
         /// <summary>
@@ -71,8 +84,8 @@ namespace Andeart.EditorCoroutines
         /// </summary>
         public static void StopCoroutine (IEnumerator routine)
         {
-            string coroutineId = CoroutineFactory.CreateId (null, routine);
-            CoroutineUpdateService.Instance.StopCoroutine (coroutineId);
+            string coroutineId = _coroutineFactory.CreateId (null, routine);
+            _updateService.StopCoroutine (coroutineId);
         }
 
         /// <summary>
@@ -81,7 +94,7 @@ namespace Andeart.EditorCoroutines
         /// </summary>
         public static void StopCoroutine (EditorCoroutine coroutine)
         {
-            CoroutineUpdateService.Instance.StopCoroutine (coroutine);
+            _updateService.StopCoroutine (coroutine);
         }
 
         /// <summary>
@@ -93,8 +106,8 @@ namespace Andeart.EditorCoroutines
         /// </summary>
         public static void StopCoroutine (object owner, string methodName)
         {
-            string coroutineId = CoroutineFactory.CreateId (owner, methodName);
-            CoroutineUpdateService.Instance.StopCoroutine (coroutineId);
+            string coroutineId = _coroutineFactory.CreateId (owner, methodName);
+            _updateService.StopCoroutine (coroutineId);
         }
 
         /// <summary>
@@ -102,7 +115,7 @@ namespace Andeart.EditorCoroutines
         /// </summary>
         public static void StopAllCoroutines ()
         {
-            CoroutineUpdateService.Instance.StopAllCoroutines ();
+            _updateService.StopAllCoroutines ();
         }
 
         /// <summary>
@@ -112,8 +125,8 @@ namespace Andeart.EditorCoroutines
         /// </summary>
         public static void StopAllCoroutines (object owner)
         {
-            int ownerHash = CoroutineFactory.GetOwnerHash (owner);
-            CoroutineUpdateService.Instance.StopAllCoroutines (ownerHash);
+            int ownerHash = _coroutineFactory.GetOwnerHash (owner);
+            _updateService.StopAllCoroutines (ownerHash);
         }
     }
 
