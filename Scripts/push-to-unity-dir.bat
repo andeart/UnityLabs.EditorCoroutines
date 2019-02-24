@@ -4,6 +4,7 @@ set targetName=%3
 set targetCopyDir=%4
 
 if "%configurationName%"=="Release" (
+    if not exist %targetCopyDir% mkdir %targetCopyDir%
     cd /d %targetCopyDir%
     for %%a in (*.dll*) do (
         del "%%a"
