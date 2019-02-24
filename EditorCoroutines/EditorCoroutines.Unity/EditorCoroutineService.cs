@@ -5,6 +5,7 @@ using Andeart.EditorCoroutines.Updates;
 using System;
 using System.Collections;
 using System.Reflection;
+using UnityEditor;
 
 
 namespace Andeart.EditorCoroutines.Unity
@@ -22,6 +23,15 @@ namespace Andeart.EditorCoroutines.Unity
         {
             _updateService = new EditorUpdateService ();
             _coroutineFactory = new EditorCoroutineFactory ();
+        }
+
+        [InitializeOnLoadMethod]
+        private static void InitializeOnLoad()
+        {
+            EditorUpdateService editorUpdateService = (EditorUpdateService)_updateService;
+            editorUpdateService.PreviousTimeSinceStartup = EditorApplication.timeSinceStartup;
+            EditorApplication.update -= editorUpdateService.OnUpdate;
+            EditorApplication.update += editorUpdateService.OnUpdate;
         }
 
         /// <summary>
