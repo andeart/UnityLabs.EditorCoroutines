@@ -1,0 +1,97 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Andeart.EditorCoroutines.Unity</name>
+    </assembly>
+    <members>
+        <member name="T:Andeart.EditorCoroutines.Unity.Coroutines.EditorCoroutine">
+            <summary>
+            <see cref="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StartCoroutine(System.Collections.IEnumerator)" /> returns an EditorCoroutine.
+            Instances of this class are only used to reference these coroutines, and do not hold any exposed properties or
+            functions.
+            An EditorCoroutine is a function that can suspend its execution (yield) until the given <see cref="T:UnityEngine.YieldInstruction" />
+            finishes.
+            </summary>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.Coroutines.EditorCoroutine.Equals(System.Object)">
+            <summary>
+            Determines whether the specified object is the same as this EditorCoroutine.
+            </summary>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.Coroutines.EditorCoroutine.GetHashCode">
+            <summary>
+            A hash code for this EditorCoroutine.
+            </summary>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.Coroutines.EditorCoroutine.ToString">
+            <summary>
+            A string that represents this EditorCoroutine.
+            </summary>
+        </member>
+        <member name="T:Andeart.EditorCoroutines.Unity.EditorCoroutineService">
+            <summary>
+            Static service to help start EditorCoroutines.
+            </summary>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StartCoroutine(System.Collections.IEnumerator)">
+            <summary>
+            Starts an EditorCoroutine.
+            The execution of a coroutine can be paused at any point using the yield statement.
+            When a yield statement is used, the coroutine will pause execution and automatically resume at the next frame.
+            See the <see cref="T:UnityEngine.Coroutine" /> documentation for more details.
+            Coroutines are excellent when modeling behavior over several frames. Coroutines have virtually no performance overhead.
+            StartCoroutine function always returns immediately, however you can yield the result. Yielding waits until the
+            coroutine has finished execution.
+            There is no guarantee that coroutines end in the same order that they were started, even if they finish in the same
+            frame.
+            You can <seealso cref="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StopCoroutine(System.Object,System.String)" /> regardless of what approach/overload you used to start
+            it.
+            </summary>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StartCoroutine(System.Object,System.String,System.Object[])">
+            <summary>
+            Starts a coroutine with the methodName on the owner object type.
+            In most cases you want to use the <seealso cref="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StartCoroutine(System.Collections.IEnumerator)" /> variation.
+            You can <seealso cref="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StopCoroutine(System.Object,System.String)" /> regardless of what approach/overload you used to start
+            it.
+            </summary>
+            <param name="owner">The EditorWindow to be set as the owner of this EditorCoroutine.</param>
+            <param name="methodName">The name of the method on the owner object type.</param>
+            <param name="methodArgs">The parameters to pass to the method being invoked.</param>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StopCoroutine(System.Collections.IEnumerator)">
+            <summary>
+            Stops all running EditorCoroutine instances that were returned by
+            <param name="routine" />
+            .
+            </summary>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StopCoroutine(Andeart.EditorCoroutines.Unity.Coroutines.EditorCoroutine)">
+            <summary>
+            Stops an EditorCoroutine instance specified by
+            <param name="coroutine" />
+            </summary>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StopCoroutine(System.Object,System.String)">
+            <summary>
+            Stops all running EditorCoroutine instances named
+            <param name="methodName" />
+            and belonging to the type of
+            <param name="owner" />
+            .
+            </summary>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StopAllCoroutines">
+            <summary>
+            Stops all running EditorCoroutine instances. This is a Global "kill-all" mechanism.
+            </summary>
+        </member>
+        <member name="M:Andeart.EditorCoroutines.Unity.EditorCoroutineService.StopAllCoroutines(System.Object)">
+            <summary>
+            Stops all running EditorCoroutine instances that belong to the type of
+            <param name="owner" />
+            .
+            </summary>
+        </member>
+    </members>
+</doc>
