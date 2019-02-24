@@ -1,52 +1,29 @@
-﻿using System.Collections.Generic;
+﻿using Andeart.EditorCoroutines.Coroutines;
+using System.Collections.Generic;
 using System.Linq;
-using UnityEditor;
 
 
-namespace Andeart.EditorCoroutines
+namespace Andeart.EditorCoroutines.Updates
 {
 
-    internal class CoroutineUpdateService
+    internal class CoroutineUpdateService<T> : IUpdateService<T> where T : ICoroutine
     {
-        // Map EditorCoroutine.Id to all running instances of that method.
-        private readonly Dictionary<string, List<EditorCoroutine>> _coroutinesToEvaluate;
+        // Map ICoroutine.Id to all running instances of that method.
+        private readonly Dictionary<string, List<T>> _coroutinesToEvaluate;
 
-        private double _previousTimeSinceStartup;
-
-        public static CoroutineUpdateService Instance { get; }
-
-        // Begone, beforefieldinit.
-        static CoroutineUpdateService ()
+        public CoroutineUpdateService ()
         {
-            Instance = new CoroutineUpdateService ();
-        }
-
-        private CoroutineUpdateService ()
-        {
-            _coroutinesToEvaluate = new Dictionary<string, List<EditorCoroutine>> ();
-        }
-
-        private void Initialize ()
-        {
-            _previousTimeSinceStartup = EditorApplication.timeSinceStartup;
-        }
-
-        [InitializeOnLoadMethod]
-        private static void InitializeOnLoad ()
-        {
-            Instance.Initialize ();
-            EditorApplication.update -= Instance.OnUpdate;
-            EditorApplication.update += Instance.OnUpdate;
+            _coroutinesToEvaluate = new Dictionary<string, List<T>> ();
         }
 
 
         #region START/STOP
 
-        public EditorCoroutine StartCoroutine (EditorCoroutine coroutine)
+        public T StartCoroutine (T coroutine)
         {
             if (!_coroutinesToEvaluate.ContainsKey (coroutine.Id))
             {
-                _coroutinesToEvaluate[coroutine.Id] = new List<EditorCoroutine> ();
+                _coroutinesToEvaluate[coroutine.Id] = new List<T> ();
             }
 
             _coroutinesToEvaluate[coroutine.Id].Add (coroutine);
@@ -64,7 +41,7 @@ namespace Andeart.EditorCoroutines
             _coroutinesToEvaluate.Remove (coroutineId);
         }
 
-        public void StopCoroutine (EditorCoroutine coroutine)
+        public void StopCoroutine (T coroutine)
         {
             _coroutinesToEvaluate.Remove (coroutine.Id);
         }
@@ -81,7 +58,7 @@ namespace Andeart.EditorCoroutines
                 }
             }
 
-            bool DoesCoroutineOwnerHashMatch (EditorCoroutine coroutine)
+            bool DoesCoroutineOwnerHashMatch (T coroutine)
             {
                 return coroutine.OwnerHash == ownerHash;
             }
@@ -97,25 +74,23 @@ namespace Andeart.EditorCoroutines
 
         #region UPDATE
 
-        private void OnUpdate ()
+        public void Update (double deltaTime, int deltaFrames)
         {
-            double deltaTime = EditorApplication.timeSinceStartup - _previousTimeSinceStartup;
-            _previousTimeSinceStartup = EditorApplication.timeSinceStartup;
             if (_coroutinesToEvaluate.Count == 0)
             {
                 return;
             }
 
             // The following uses _coroutinesToEvaluate.ToList () and not simply _coroutinesToEvaluate.
-            // This is to cache current list of _coroutinesToEvaluate and evaluate only those, in case another EditorCoroutine is started while evaluating the current collection.
+            // This is to cache current list of _coroutinesToEvaluate and evaluate only those, in case another ICoroutine is started while evaluating the current collection.
             foreach (var coroutineListInfo in _coroutinesToEvaluate.ToList ())
             {
                 var coroutineList = coroutineListInfo.Value;
                 for (int j = coroutineList.Count - 1; j >= 0; j--) // Go backwards, to allow element removal during iteration.
                 {
-                    EditorCoroutine coroutine = coroutineList[j];
+                    T coroutine = coroutineList[j];
 
-                    if (!coroutine.CurrentYield.IsReadyToEvaluate (deltaTime, 1))
+                    if (!coroutine.CurrentYield.IsReadyToEvaluate (deltaTime, deltaFrames))
                     {
                         continue;
                     }
