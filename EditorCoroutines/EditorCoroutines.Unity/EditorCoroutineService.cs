@@ -5,6 +5,7 @@ using Andeart.EditorCoroutines.Updates;
 using System;
 using System.Collections;
 using System.Reflection;
+using UnityEditor;
 
 
 namespace Andeart.EditorCoroutines.Unity
@@ -15,13 +16,22 @@ namespace Andeart.EditorCoroutines.Unity
     /// </summary>
     public static class EditorCoroutineService
     {
-        private static readonly IUpdateService<EditorCoroutine> _updateService;
         private static readonly ICoroutineFactory<EditorCoroutine> _coroutineFactory;
+        internal static IUpdateService<EditorCoroutine> UpdateService { get; }
 
         static EditorCoroutineService ()
         {
-            _updateService = new EditorUpdateService ();
+            UpdateService = new EditorUpdateService ();
             _coroutineFactory = new EditorCoroutineFactory ();
+        }
+
+        [InitializeOnLoadMethod]
+        private static void InitializeOnLoad ()
+        {
+            EditorUpdateService editorUpdateService = (EditorUpdateService) UpdateService;
+            editorUpdateService.PreviousTimeSinceStartup = EditorApplication.timeSinceStartup;
+            EditorApplication.update -= editorUpdateService.OnUpdate;
+            EditorApplication.update += editorUpdateService.OnUpdate;
         }
 
         /// <summary>
@@ -40,7 +50,7 @@ namespace Andeart.EditorCoroutines.Unity
         public static EditorCoroutine StartCoroutine (IEnumerator routine)
         {
             EditorCoroutine coroutine = _coroutineFactory.Create (null, routine);
-            return _updateService.StartCoroutine (coroutine);
+            return UpdateService.StartCoroutine (coroutine);
         }
 
         /// <summary>
@@ -74,7 +84,7 @@ namespace Andeart.EditorCoroutines.Unity
             object returned = methodInfo.Invoke (owner, methodArgs);
             IEnumerator routine = returned as IEnumerator;
             EditorCoroutine coroutine = _coroutineFactory.Create (owner, routine);
-            return _updateService.StartCoroutine (coroutine);
+            return UpdateService.StartCoroutine (coroutine);
         }
 
         /// <summary>
@@ -85,7 +95,7 @@ namespace Andeart.EditorCoroutines.Unity
         public static void StopCoroutine (IEnumerator routine)
         {
             string coroutineId = _coroutineFactory.CreateId (null, routine);
-            _updateService.StopCoroutine (coroutineId);
+            UpdateService.StopCoroutine (coroutineId);
         }
 
         /// <summary>
@@ -94,7 +104,7 @@ namespace Andeart.EditorCoroutines.Unity
         /// </summary>
         public static void StopCoroutine (EditorCoroutine coroutine)
         {
-            _updateService.StopCoroutine (coroutine);
+            UpdateService.StopCoroutine (coroutine);
         }
 
         /// <summary>
@@ -107,7 +117,7 @@ namespace Andeart.EditorCoroutines.Unity
         public static void StopCoroutine (object owner, string methodName)
         {
             string coroutineId = _coroutineFactory.CreateId (owner, methodName);
-            _updateService.StopCoroutine (coroutineId);
+            UpdateService.StopCoroutine (coroutineId);
         }
 
         /// <summary>
@@ -115,7 +125,7 @@ namespace Andeart.EditorCoroutines.Unity
         /// </summary>
         public static void StopAllCoroutines ()
         {
-            _updateService.StopAllCoroutines ();
+            UpdateService.StopAllCoroutines ();
         }
 
         /// <summary>
@@ -126,7 +136,7 @@ namespace Andeart.EditorCoroutines.Unity
         public static void StopAllCoroutines (object owner)
         {
             int ownerHash = _coroutineFactory.GetOwnerHash (owner);
-            _updateService.StopAllCoroutines (ownerHash);
+            UpdateService.StopAllCoroutines (ownerHash);
         }
     }
 

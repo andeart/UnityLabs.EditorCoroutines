@@ -9,21 +9,21 @@ namespace Andeart.EditorCoroutines.Unity.Updates
     internal class EditorUpdateService : IUpdateService<EditorCoroutine>
     {
         private readonly IUpdateService<EditorCoroutine> _coreUpdateService;
-        private double _previousTimeSinceStartup;
+        public double PreviousTimeSinceStartup { get; set; }
 
         public EditorUpdateService ()
         {
             _coreUpdateService = new CoroutineUpdateService<EditorCoroutine> ();
 
-            _previousTimeSinceStartup = EditorApplication.timeSinceStartup;
-            EditorApplication.update -= OnUpdate;
-            EditorApplication.update += OnUpdate;
+            // PreviousTimeSinceStartup = EditorApplication.timeSinceStartup;
+            // EditorApplication.update -= OnUpdate;
+            // EditorApplication.update += OnUpdate;
         }
 
-        private void OnUpdate ()
+        public void OnUpdate ()
         {
-            double deltaTime = EditorApplication.timeSinceStartup - _previousTimeSinceStartup;
-            _previousTimeSinceStartup = EditorApplication.timeSinceStartup;
+            double deltaTime = EditorApplication.timeSinceStartup - PreviousTimeSinceStartup;
+            PreviousTimeSinceStartup = EditorApplication.timeSinceStartup;
             Update (deltaTime, 1);
         }
 
