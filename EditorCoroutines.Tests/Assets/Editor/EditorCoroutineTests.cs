@@ -1,4 +1,6 @@
-﻿using NUnit.Framework;
+﻿using Andeart.EditorCoroutines.Unity;
+using Andeart.EditorCoroutines.Unity.Coroutines;
+using NUnit.Framework;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -70,7 +72,7 @@ namespace Andeart.EditorCoroutines.Tests
 
             Assert.AreEqual (secondsToWait,
                              deltaSeconds,
-                             0.015,
+                             0.024, // A little over a single frame margin of error at 60 fps, which Unity Editor _definitely_ runs at. /s
                              $"WaitForSeconds EditorCoroutine returned in {deltaSeconds}, when expected to return in {secondsToWait} seconds.");
         }
 
@@ -321,7 +323,6 @@ namespace Andeart.EditorCoroutines.Tests
         private class CustomWaitWhile : CustomYieldInstruction
         {
             private readonly Func<bool> _predicate;
-
             public override bool keepWaiting => _predicate ();
 
             public CustomWaitWhile (Func<bool> predicate)
