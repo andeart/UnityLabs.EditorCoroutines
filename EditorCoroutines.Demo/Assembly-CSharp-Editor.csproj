@@ -301,6 +301,9 @@
     <Reference Include="Andeart.EditorCoroutines">
       <HintPath>D:/Users/anurag/Documents/Projects/UnityLabs.EditorCoroutines/EditorCoroutines.Demo/Assets/Libraries/Andeart.EditorCoroutines/Andeart.EditorCoroutines.dll</HintPath>
     </Reference>
+    <Reference Include="Andeart.EditorCoroutines.Unity">
+      <HintPath>D:/Users/anurag/Documents/Projects/UnityLabs.EditorCoroutines/EditorCoroutines.Demo/Assets/Libraries/Andeart.EditorCoroutines.Unity/Andeart.EditorCoroutines.Unity.dll</HintPath>
+    </Reference>
     <Reference Include="mscorlib">
       <HintPath>D:/Program Files/Unity Editors/2018.3.5f1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
     </Reference>
