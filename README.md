@@ -1,6 +1,13 @@
 # UnityLabs.EditorCoroutines
 
-`EditorCoroutines` allows you to start and stop Unity coroutines in Editor scripts.
+**Base**<br />
+[![nuget-release](https://img.shields.io/nuget/v/Andeart.EditorCoroutines.svg)](https://www.nuget.org/packages/Andeart.EditorCoroutines)<br />
+[![github-release](https://img.shields.io/github/release/andeart/UnityLabs.EditorCoroutines.svg)](https://github.com/andeart/UnityLabs.EditorCoroutines/releases/latest)<br/>
+**Unity**<br />
+[![nuget-release-unity](https://img.shields.io/nuget/v/Andeart.EditorCoroutines.Unity.svg)](https://www.nuget.org/packages/Andeart.EditorCoroutines.Unity)<br />
+[![github-release-unity](https://img.shields.io/github/release/andeart/UnityLabs.EditorCoroutines.svg)](https://github.com/andeart/UnityLabs.EditorCoroutines/releases/latest)<br/>
+
+`EditorCoroutines` allow you to start and stop Unity coroutines in Editor scripts.
 
 This library is a modernisation of @marijnz's [unity-editor-coroutines](https://github.com/marijnz/unity-editor-coroutines), built from the ground up keeping newer C# features, API architecture, and Unity performance in mind.
 
@@ -63,10 +70,15 @@ Because `EditorCoroutines` is purely a Unity concept (and implementation), the t
 You can find the currently implemented tests in the [Tests.cs](https://github.com/andeart/UnityLabs.EditorCoroutines/blob/master/UnityLabs.EditorCoroutines.Tests/Assets/Editor/EditorCoroutineTests.cs) file.
 
 ## Installation and Usage
-* Drop the `UnityLabs.EditorCoroutines.dll` file (from the [Releases tab](https://github.com/andeart/UnityLabs.EditorCoroutines/releases)) anywhere in your Unity project. Any sub-directory under `Assets` will work- **it does not need to be under an `Editor` folder**.
-* Optional: Also drop the `UnityLabs.EditorCoroutines.pdb` and `UnityLabs.EditorCoroutines.xml` files in the same location if you're interested in debugging.
-* You can now use `EditorCoroutines` in your Editor scripts.
-* Refer to the [Demo C#](https://github.com/andeart/UnityLabs.EditorCoroutines/blob/master/Demo/Assets/Editor/EditorCoroutineDemoWindow.cs) file for more examples
+
+`Andeart.EditorCoroutines.dll`- Base class lib, for extensibility in other environments.<br />
+`Andeart.EditorCoroutines.Unity.dll`- Unity implementation, for use in the Editor.<br />
+
+- Download the files from their respective NuGet pages ([Base](https://www.nuget.org/packages/Andeart.EditorCoroutines)/[Unity](https://www.nuget.org/packages/Andeart.EditorCoroutines.Unity)). If you want to use the Unity implementation, you need both the files.
+- Optionally, you can instead download from [the Github Releases page](https://github.com/andeart/UnityLabs.EditorCoroutines/releases/latest), which contains both files.
+- Drop both the files anywhere in your Unity project. Any sub-directory under `Assets` will work- **it does not need to be under an `Editor` folder**.
+- You can now use `EditorCoroutines` in your Editor scripts.
+- Refer to the [Demo C# file](https://github.com/andeart/UnityLabs.EditorCoroutines/blob/master/EditorCoroutines.Demo/Assets/Editor/EditorCoroutineDemoWindow.cs)  for more examples.
 
 ## Feedback
-Please feel free to send in a Pull Request, or drop me an email. Cheers!
+Please feel free to send in a pull request, or drop me an email. Cheers!
