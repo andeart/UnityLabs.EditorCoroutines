@@ -23,6 +23,6 @@ using System.Runtime.InteropServices;
 // The following GUID is for the ID of the typelib if this project is exposed to COM
 [assembly: Guid ("d9082f31-71d6-4453-b178-a80ee10958b1")]
 
-[assembly: AssemblyVersion ("1.2.31.0")]
-[assembly: AssemblyFileVersion ("1.2.31.0")]
+[assembly: AssemblyVersion ("1.2.1.0")]
+[assembly: AssemblyFileVersion ("1.2.1.0")]
 [assembly: InternalsVisibleTo ("Andeart.EditorCoroutines.Unity")]
