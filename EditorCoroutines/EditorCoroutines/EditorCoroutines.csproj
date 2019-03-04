@@ -32,12 +32,6 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\Andeart.EditorCoroutines.xml</DocumentationFile>
   </PropertyGroup>
-  <PropertyGroup>
-    <SignAssembly>true</SignAssembly>
-  </PropertyGroup>
-  <PropertyGroup>
-    <AssemblyOriginatorKeyFile>andeart-B113DB28-5D9A-4A1F-8B38-F5068710A4EF.pfx</AssemblyOriginatorKeyFile>
-  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -59,16 +53,8 @@
     <Compile Include="Yields\IYield.cs" />
     <Compile Include="Yields\Yield.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <None Include="andeart-B113DB28-5D9A-4A1F-8B38-F5068710A4EF.pfx" />
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>setlocal enabledelayedexpansion
-
-for /f "tokens=*" %25%25p in ($(SolutionDir)..\Scripts\unity-dirs.txt) do (
-    set path="$(SolutionDir)..\%25%25p\$(TargetName)"
-    call "$(SolutionDir)..\Scripts\push-to-unity-dir.bat" $(ConfigurationName) $(TargetDir) $(TargetName) !path!
-)</PostBuildEvent>
+    <PostBuildEvent>call "$(SolutionDir)..\Tools\push-to-unity-dir.bat" $(SolutionDir) $(TargetName) $(ConfigurationName) $(TargetDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>

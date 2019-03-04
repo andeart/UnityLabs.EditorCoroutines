@@ -42,7 +42,7 @@ namespace Andeart.EditorCoroutines.Unity.Coroutines
         public string GetCoreMethodName (IEnumerator routine)
         {
             string methodName = routine.ToString (); // Backup name, in case we're unable to parse the real method name.
-            var split = routine.ToString ().Split ('<', '>');
+            string[] split = routine.ToString ().Split ('<', '>');
             if (split.Length == 3)
             {
                 methodName = split[1];
