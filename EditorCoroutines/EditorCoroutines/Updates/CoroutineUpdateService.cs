@@ -48,9 +48,9 @@ namespace Andeart.EditorCoroutines.Updates
 
         public void StopAllCoroutines (int ownerHash)
         {
-            foreach (var coroutineInstanceListInfo in _coroutinesToEvaluate.ToList ())
+            foreach (KeyValuePair<string, List<T>> coroutineInstanceListInfo in _coroutinesToEvaluate.ToList ())
             {
-                var coroutineInstanceList = coroutineInstanceListInfo.Value;
+                List<T> coroutineInstanceList = coroutineInstanceListInfo.Value;
                 coroutineInstanceList.RemoveAll (DoesCoroutineOwnerHashMatch);
                 if (coroutineInstanceList.Count == 0)
                 {
@@ -83,9 +83,9 @@ namespace Andeart.EditorCoroutines.Updates
 
             // The following uses _coroutinesToEvaluate.ToList () and not simply _coroutinesToEvaluate.
             // This is to cache current list of _coroutinesToEvaluate and evaluate only those, in case another ICoroutine is started while evaluating the current collection.
-            foreach (var coroutineListInfo in _coroutinesToEvaluate.ToList ())
+            foreach (KeyValuePair<string, List<T>> coroutineListInfo in _coroutinesToEvaluate.ToList ())
             {
-                var coroutineList = coroutineListInfo.Value;
+                List<T> coroutineList = coroutineListInfo.Value;
                 for (int j = coroutineList.Count - 1; j >= 0; j--) // Go backwards, to allow element removal during iteration.
                 {
                     T coroutine = coroutineList[j];
@@ -114,8 +114,6 @@ namespace Andeart.EditorCoroutines.Updates
         }
 
         #endregion UPDATE
-
-
     }
 
 }
