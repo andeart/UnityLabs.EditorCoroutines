@@ -1,6 +1,13 @@
 # UnityLabs.EditorCoroutines
 
-`EditorCoroutines` allows you to start and stop Unity coroutines in Editor scripts.
+**Base**<br />
+[![nuget-release](https://img.shields.io/nuget/v/Andeart.EditorCoroutines.svg)](https://www.nuget.org/packages/Andeart.EditorCoroutines)<br />
+[![github-release](https://img.shields.io/github/release/andeart/UnityLabs.EditorCoroutines.svg)](https://github.com/andeart/UnityLabs.EditorCoroutines/releases/latest)<br/>
+**Unity**<br />
+[![nuget-release-unity](https://img.shields.io/nuget/v/Andeart.EditorCoroutines.Unity.svg)](https://www.nuget.org/packages/Andeart.EditorCoroutines.Unity)<br />
+[![github-release-unity](https://img.shields.io/github/release/andeart/UnityLabs.EditorCoroutines.svg)](https://github.com/andeart/UnityLabs.EditorCoroutines/releases/latest)<br/>
+
+`EditorCoroutines` allow you to start and stop Unity coroutines in Editor scripts.
 
 This library is a modernisation of @marijnz's [unity-editor-coroutines](https://github.com/marijnz/unity-editor-coroutines), built from the ground up keeping newer C# features, API architecture, and Unity performance in mind.
 
