@@ -64,16 +64,15 @@ void StopAllCoroutines (object owner);
 - `CustomYieldInstruction`
 - Nested `EditorCoroutines`
 
-## Tests
+## Testing
 
-The base `EditorCoroutines` is simply a special iterator methodology. Additionally, `EditorCoroutines.Unity` is purely a Unity Editor concept (and implementation).<br />
-Unfortunately, a lot of `UnityEngine`/`UnityEditor` methods are implemented by the supplied CLR (via attributes that identify them), and not available in their provided assemblies, even via Reflection.<br />
-This prevented me from writing unit tests that could directly be triggered via `dotnet`. Also confirmed on a different thread [here](https://forum.unity.com/threads/unittest-under-fps-sample-failed-with-securityexception-ecall-methods-must-be-packaged-into-a-s.580048/#post-3872692).
+Here's a secret: `EditorCoroutines` is simply a special iterator methodology. And `EditorCoroutines.Unity` is purely a Unity Editor concept (and implementation).<br />
+Another secret: a lot of `UnityEngine`/`UnityEditor` methods are implemented by the supplied CLR via attributes that identify them, and not in their provided assemblies.<br />
 
-Finally, I could mock the Unity dependencies, but that would add an additional layer of interfaces, which I decided to avoid.
+Hence, there are no unit tests that can be triggered directly via `dotnet` in this repo (mocking the Unity dependencies would've added a layer of superfluous interfaces).
 
-As a result, all the viable tests for this project are written in Unity Editor's TestRunner.
-You can find the currently implemented tests in the [Tests.cs file](https://github.com/andeart/UnityLabs.EditorCoroutines/blob/master/UnityLabs.EditorCoroutines.Tests/Assets/Editor/EditorCoroutineTests.cs).
+All the real tests for this project are written for Unity Editor's TestRunner.
+The latest tests can be found in the [Tests.cs file](https://github.com/andeart/UnityLabs.EditorCoroutines/blob/master/UnityLabs.EditorCoroutines.Tests/Assets/Editor/EditorCoroutineTests.cs).
 
 ## Installation and Usage
 
